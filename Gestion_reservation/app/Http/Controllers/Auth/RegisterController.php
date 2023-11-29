@@ -43,6 +43,10 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    protected function redirectTo()
+    {
+        return route('ajout_evenement');
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -52,6 +56,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // dd($data);
+        if($data['role']=='client'){
+
+        
+        return Validator::make($data, [
+            
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:association,client',
+            'nom' => 'required_if:role,association|string|max:255',
+            'prenom' => 'required_if:role,client|string|max:255',
+            'telephone' => 'required_if:role,client|string|max:255',
+        ]);
+    }else{
         return Validator::make($data, [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
@@ -60,10 +78,11 @@ class RegisterController extends Controller
             'slogan' => 'required_if:role,association|string|max:255',
             'logo' => 'required_if:role,association|string|max:255',
             'date_creation' => 'required_if:role,association|date',
-            'prenom' => 'required_if:role,client|string|max:255',
-            'telephone' => 'required_if:role,client|string|max:255',
+
         ]);
+
     }
+}
 
     /**
      * Create a new user instance after a valid registration.
