@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('libelle');
             $table->dateTime('date_limite_inscription');
             $table->string('image_mise_en_avant');
-            $table->boolean('est_cloturer_ou_pas');
+            $table->text('description');
+            $table->string('lieu');
+            $table->enum('est_cloturer_ou_pas', ['En_cours','Cloture'])->default('En_cours');
             $table->dateTime('date_evenement');
             $table->foreign('association_id')->references('id')->on('associations')->onDelete('cascade');
             $table->timestamps();
