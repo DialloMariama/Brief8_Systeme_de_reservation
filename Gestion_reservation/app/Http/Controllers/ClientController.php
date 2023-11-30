@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Client;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
@@ -50,7 +51,7 @@ class ClientController extends Controller
 
         if ($reservations->save()) {
             echo 'ajout reussi';
-            return redirect('/evenement/liste');
+            return redirect('/client/listeEvenementClient');
         }
     }
 
@@ -60,6 +61,7 @@ class ClientController extends Controller
     public function show($id)
     {
         $reservations = Reservation::where('evenement_id', $id)->get();
+        // $user=User::find($id);
         return view("reservation.listeReservation", compact("reservations"));
     }
 

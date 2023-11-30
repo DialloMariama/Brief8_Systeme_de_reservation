@@ -44,6 +44,7 @@ Route::get('/client/listeEvenementClient', [EvenementController::class, 'showCli
 Route::get('/reservation/ajoutReservation/{evenement_id}',[ClientController::class, 'create'])->name('reservation.ajout');
 Route::post('/reservation/ajoute', [ClientController::class, 'store'])->name('reservation.ajouter');
 Route::get('/reservation/listeReservation/{id}', [ClientController::class, 'show']);
+Route::get('/refuserReservation/{id}', [EvenementController::class, 'updateEtatReservation']);
 
 
 

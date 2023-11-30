@@ -1,6 +1,14 @@
 @extends('layouts.app')
 
 @section('content')
+@if(count($errors)>0)
+<div class="alert alert-dismissible alert-danger">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    @foreach($errors->all() as $error)
+    <strong>Oh snap!</strong> <a href="#" class="alert-link">{{$error}}.
+        @endforeach
+</div>
+@endif
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

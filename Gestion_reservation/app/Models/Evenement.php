@@ -14,6 +14,7 @@ class Evenement extends Model
         "image_mise_en_avant",
         "est_cloturer_ou_pas",
         "date_evenement",
+        "user_id",
     ];
     public function association(){
         return $this->belongsTo(Association::class);
