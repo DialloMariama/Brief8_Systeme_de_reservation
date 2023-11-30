@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Association;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -43,10 +44,17 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-    protected function redirectTo()
+    protected function registered(Request $request, $user)
     {
-        return route('ajout_evenement');
+        if ($user->role === 'association') {
+            return redirect()->route('ajout_evenement');
+        } elseif ($user->role === 'client') {
+            return redirect()->route('evenement_listeClient');
+        }
+
+        return redirect($this->redirectTo);
     }
+    
 
     /**
      * Get a validator for an incoming registration request.

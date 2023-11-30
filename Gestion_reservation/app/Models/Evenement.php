@@ -21,4 +21,7 @@ class Evenement extends Model
     public function clients(){
         return $this->hasMany(Client::class);
     }
+    public function reservations() {
+        return $this->hasMany(Reservation::class);
+    }
 }

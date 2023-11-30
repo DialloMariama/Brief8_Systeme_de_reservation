@@ -14,9 +14,12 @@ class EvenementController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
         $evenements = Evenement::all();
+        // $evenements = Evenement::where('user_id', $user->id)->get()();
         return view("association.listeEvenement", compact("evenements"));
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -70,9 +73,15 @@ class EvenementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Evenement $evenement)
+    public function show()
     {
-        //
+        $evenements = Evenement::all();
+        return view('client.listeEvenement', compact('evenements'));
+    }
+    public function showClient()
+    {
+        $evenements = Evenement::all();
+        return view('client.listeEvenementClient', compact('evenements'));
     }
 
     /**
@@ -93,7 +102,7 @@ class EvenementController extends Controller
         $request->validate([
             'libelle' => 'required',
             'date_limite_inscription' => 'required',
-            'image_mise_en_avant' => 'required|image|',
+            'image_mise_en_avant',
             'description' => 'required',
             'est_cloturer_ou_pas' => 'required',
             'lieu' => 'required',
@@ -105,7 +114,10 @@ class EvenementController extends Controller
 
         $evenement->libelle = $request->get('libelle');
         $evenement->date_limite_inscription = $request->get('date_limite_inscription');
-        $evenement->image_mise_en_avant = $this->storeImage($request->file('image_mise_en_avant'));
+        if ($request->hasFile("image_mise_en_avant")) 
+        {
+            $evenement->image_mise_en_avant = $this->storeImage($request->image_mise_en_avant);
+        }
         $evenement->description = $request->get('description');
         $evenement->est_cloturer_ou_pas = $request->get('est_cloturer_ou_pas');
         $evenement->date_evenement = $request->get('date_evenement');

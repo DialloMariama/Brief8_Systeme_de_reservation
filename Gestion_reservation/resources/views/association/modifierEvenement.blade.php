@@ -22,13 +22,18 @@
                         <label for="libelle">Libellé</label>
                         <input type="text" class="form-control" id="libelle" placeholder="Enter le libellé" name="libelle" value="{{$evenement->libelle}}">
                     </div>
+                    <div class="mb-3">
+                    <label class="form-label mt-3">Image actuelle</label>
+                    <img src="{{ asset('storage/' . $evenement->image_mise_en_avant) }}" alt="Current Image"
+                        class="img-thumbnail" style="max-width: 100px;">
+                </div>
                     <div class="form-group">
                         <label for="image_mise_en_avant">Image</label>
-                        <input type="file" class="form-control" id="image_mise_en_avant" placeholder="Entrer l'image" name="image_mise_en_avant" value="{{asset('storage/'.$evenement->image_mise_en_avant)}}">
+                        <input type="file" class="form-control" id="image_mise_en_avant" placeholder="Entrer l'image" >
                     </div>
                     <div class="form-group">
                         <label for="date_limite_inscription">Date limite</label>
-                        <input type="date" class="form-control" id="date_limite_inscription" placeholder="Entrer la date limite d'inscription" name="date_limite_inscription" value="{{$evenement->date_limite_inscription}}">
+                        <input type="datetime" class="form-control" id="date_limite_inscription" placeholder="Entrer la date limite d'inscription" name="date_limite_inscription" value="{{$evenement->date_limite_inscription}}">
                     </div>
                     <div class="form-group">
                         <label for="lieu">Lieu</label>
@@ -45,7 +50,7 @@
                     </div>
                     <div class="form-group">
                         <label for="date_evenement">Date de l'evenement</label>
-                        <input type="date" class="form-control" id="date_evenement" placeholder="Entrer la date de l'evenement" name="date_evenement" value="{{$evenement->date_evenement}}">
+                        <input type="datetime" class="form-control" id="date_evenement" placeholder="Entrer la date de l'evenement" name="date_evenement" value="{{$evenement->date_evenement}}">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>

@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\Evenement;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EvenementController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\EvenementController;
-use App\Models\Evenement;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,11 @@ use App\Models\Evenement;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [Controller::class, 'index']);
 
 Auth::routes();
 
@@ -32,6 +36,17 @@ Route::get('/evenement/liste', [EvenementController::class, 'index']);
 Route::get('/evenement/modifier/{id}', [EvenementController::class,'edit']);
 Route::put('/evenement/modifier', [EvenementController::class,'update']);
 Route::get('/evenement/supprimer/{id}', [EvenementController::class, 'destroy']);
+
+Route::get('/client/listeEvenement', [EvenementController::class, 'show'])->name('evenement_liste');
+Route::get('/client/listeEvenementClient', [EvenementController::class, 'showClient'])->name('evenement_listeClient');
+
+
+Route::get('/reservation/ajoutReservation/{evenement_id}',[ClientController::class, 'create'])->name('reservation.ajout');
+Route::post('/reservation/ajoute', [ClientController::class, 'store'])->name('reservation.ajouter');
+Route::get('/reservation/listeReservation/{id}', [ClientController::class, 'show']);
+
+
+
 
 
 

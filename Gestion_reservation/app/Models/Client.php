@@ -23,5 +23,8 @@ class Client extends Model
     public function evenements(){
         return $this->hasMany(Evenement::class);
     }
+    public function reservations() {
+        return $this->hasMany(Reservation::class);
+    }
 }
 

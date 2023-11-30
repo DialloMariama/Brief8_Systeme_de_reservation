@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Reservation;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 
@@ -13,31 +15,52 @@ class ClientController extends Controller
      */
     public function index()
     {
-        //
+    //  $reservations = Reservation::all();
+    //  return view("reservation.listeReservation", compact("reservations"));
     }
+
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($evenement_id)
     {
-        //
+        return view('reservation.ajoutReservation', ['evenement_id' => $evenement_id]);
+    
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreClientRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'reference' => 'required',
+            'nombre_de_place' => 'required|min:1',
+        ]);
+
+
+        $reservations = new Reservation();
+        $reservations->reference = $request->get('reference');
+        $reservations->nombre_de_place = $request->get('nombre_de_place');
+        
+        $reservations->user_id = $request->get('user_id');
+        $reservations->evenement_id = $request->get('evenement_id');
+
+
+        if ($reservations->save()) {
+            echo 'ajout reussi';
+            return redirect('/evenement/liste');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Client $client)
+    public function show($id)
     {
-        //
+        $reservations = Reservation::where('evenement_id', $id)->get();
+        return view("reservation.listeReservation", compact("reservations"));
     }
 
     /**
