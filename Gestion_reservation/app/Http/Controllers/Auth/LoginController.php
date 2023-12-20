@@ -42,6 +42,8 @@ class LoginController extends Controller
 {
     if ($user->role === 'association') {
         return redirect()->route('ajout_evenement');
+    }elseif ($user->role === 'client') {
+        return redirect()->route('evenement_listeClient');
     }
 
     return redirect()->intended($this->redirectPath());

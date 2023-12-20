@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('association_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('libelle');
             $table->dateTime('date_limite_inscription');
             $table->string('image_mise_en_avant');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('lieu');
             $table->enum('est_cloturer_ou_pas', ['En_cours','Cloture'])->default('En_cours');
             $table->dateTime('date_evenement');
-            $table->foreign('association_id')->references('id')->on('associations')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

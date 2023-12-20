@@ -14,11 +14,15 @@ class Evenement extends Model
         "image_mise_en_avant",
         "est_cloturer_ou_pas",
         "date_evenement",
+        "user_id",
     ];
     public function association(){
         return $this->belongsTo(Association::class);
     }
     public function clients(){
         return $this->hasMany(Client::class);
+    }
+    public function reservations() {
+        return $this->hasMany(Reservation::class);
     }
 }

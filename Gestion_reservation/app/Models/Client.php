@@ -11,7 +11,6 @@ class Client extends Model
     protected $fillable = [
         'user_id',
         "nom",
-        "prenom",
         "email",
         "telephone",
         "password",
@@ -22,6 +21,9 @@ class Client extends Model
     }
     public function evenements(){
         return $this->hasMany(Evenement::class);
+    }
+    public function reservations() {
+        return $this->hasMany(Reservation::class);
     }
 }
 
