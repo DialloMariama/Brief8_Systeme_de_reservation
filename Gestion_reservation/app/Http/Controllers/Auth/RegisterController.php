@@ -74,7 +74,6 @@ class RegisterController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'role' => 'required|in:association,client',
             'nom' => 'required_if:role,association|string|max:255',
-            'prenom' => 'required_if:role,client|string|max:255',
             'telephone' => 'required_if:role,client|string|max:255',
         ]);
     }else{
@@ -125,7 +124,6 @@ class RegisterController extends Controller
             Client::create([
                 'user_id' => $user->id,
                 'nom' => $data['nom'],
-                'prenom' => $data['prenom'],
                 'email' => $data['email'],
                 'telephone' => $data['telephone'],
                 'password' => bcrypt($data['password']),

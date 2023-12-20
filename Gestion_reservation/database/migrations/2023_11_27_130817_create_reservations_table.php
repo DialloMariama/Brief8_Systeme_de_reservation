@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('reference');
             $table->enum('est_accepte_ou_pas', ['accepte','refuse'])->default('accepte');
-            $table->decimal('nombre_de_place')->default(1);
+            $table->integer('nombre_de_place')->default(1);
             $table->foreign('evenement_id')->references('id')->on('evenements')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

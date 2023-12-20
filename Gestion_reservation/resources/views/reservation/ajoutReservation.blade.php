@@ -22,8 +22,9 @@
                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                         <div class="form-group">
                             <label for="reference">Référence</label>
-                            <input type="text" class="form-control" id="reference" name="reference" required>
+                            <input type="text" class="form-control" id="reference" name="reference" value="{{ old('reference', $reference) }}" readonly>
                         </div>
+
 
                         <div class="form-group">
                             <label for="nombre_de_place">Nombre de place</label>

@@ -3,11 +3,12 @@
 @section('content')
 <div class="container mt-4">
     <a href="/ajout_evenement" class="btn btn-primary btn-sm">Ajouter Evenement</a>
-    <a href="/client/listeEvenementCloture" class="btn btn-primary btn-sm">Liste des événements clôturés</a>
-    
+
+
     <div class="card">
+
         <div class="card-header">
-            <h2 class="offset-4">LISTE DES EVENEMENTS</h2>
+            <h2 class="offset-4">LISTE DES EVENEMENTS CLOTURES</h2>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -39,8 +40,6 @@
                 </tr>
                 @endforeach
             </table>
-    <a href="/reservation/listeReservationRefuse/{{$evenement->id }}" class="btn btn-primary btn-sm">Liste des résérvations réfusées</a>
-
         </div>
     </div>
 </div>

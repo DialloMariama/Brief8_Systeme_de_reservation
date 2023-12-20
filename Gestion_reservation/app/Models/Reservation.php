@@ -14,4 +14,13 @@ class Reservation extends Model
         "client_id",
         "evenement_id",
     ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function evenement()
+    {
+        return $this->belongsTo(Evenement::class);
+    }
 }

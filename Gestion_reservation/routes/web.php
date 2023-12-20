@@ -37,6 +37,8 @@ Route::get('/evenement/modifier/{id}', [EvenementController::class,'edit']);
 Route::put('/evenement/modifier', [EvenementController::class,'update']);
 Route::get('/evenement/supprimer/{id}', [EvenementController::class, 'destroy']);
 
+Route::get('/client/listeEvenementCloture', [EvenementController::class, 'showEvenementCloture'])->name('evenementCloture_liste');
+
 Route::get('/client/listeEvenement', [EvenementController::class, 'show'])->name('evenement_liste');
 Route::get('/client/listeEvenementClient', [EvenementController::class, 'showClient'])->name('evenement_listeClient');
 
@@ -44,6 +46,8 @@ Route::get('/client/listeEvenementClient', [EvenementController::class, 'showCli
 Route::get('/reservation/ajoutReservation/{evenement_id}',[ClientController::class, 'create'])->name('reservation.ajout');
 Route::post('/reservation/ajoute', [ClientController::class, 'store'])->name('reservation.ajouter');
 Route::get('/reservation/listeReservation/{id}', [ClientController::class, 'show']);
+Route::get('/reservation/listeReservationRefuse/{id}', [ClientController::class, 'showRefus']);
+
 Route::get('/refuserReservation/{id}', [EvenementController::class, 'updateEtatReservation']);
 
 
